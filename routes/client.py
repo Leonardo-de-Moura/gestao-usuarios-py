@@ -37,7 +37,7 @@ def for_new_client():
 
 @client_route.route('/<int:client_id>' )
 def detalhe_client(client_id):
-    return render_template('detalhe_client.html')
+        cliente= list(filter(lambda c: c['id'] == client_id))
 
 @client_route.route('/<int:client_id>/edit')
 def form_edit_client(client_id):
@@ -49,12 +49,12 @@ def form_edit_client(client_id):
 
 @client_route.route('/<int:client_id>/update', methods=['PUT'])
 def update_client(client_id):
-    cliente= None
+    clienteh= None
     data = request.json
     for c in CLIENTES:
-        if c['id']== client_id:
-            c['Nome']=data['Nome']
-            c['Email']=data['Email']
+        if c['id'] == client_id:
+            c['nome']=data['Nome']
+            c['email']=data['Email']
             clienteh=c
             
     return render_template('item_cliente.html', cliente= clienteh)        
