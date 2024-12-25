@@ -3,18 +3,6 @@ from database.cliente import CLIENTES
 
 client_route= Blueprint('client', __name__)
     
-"""""
-rota de clientes
-
--/clientes/ (get)listar clientes
--/clientes/ (post) inserir clientes
--/çlientes/new (get) form para criar new client
--/clientes/id (get)- obter dados de um cliente por id
--/clientes/id/edit (get) renderizar um formulario para editar os dados
--/clientes/id/update (put) atualiza os dados
-/clientes/id/delete (delete) deleta um cliente
-
-"""
 @client_route.route('/')
 def lista_client():
     return render_template('listaclientes.html', clientes=CLIENTES)
