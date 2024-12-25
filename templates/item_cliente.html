@@ -4,7 +4,8 @@
   <td>{{ cliente.email }}</td>
   <td>
     <button class="btn btn-secondary" 
-    c-get="{{ url_for('client.form_edit_client', client_id=cliente.id) }}" c-target="#form-client"> detalhes</button>
+    c-get="{{ url_for('client.detalhe_client', client_id=cliente.id) }}" c-target="#exibir" data-bs-toggle="modal" data-bs-target="#exampleModal"> detalhes</button>
+
     <button class="btn btn-primary" 
     c-get="{{ url_for('client.form_edit_client', client_id=cliente.id) }}" c-target="#form-client">
     editar</button>

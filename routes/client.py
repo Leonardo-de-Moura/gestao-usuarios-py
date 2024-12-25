@@ -37,7 +37,8 @@ def for_new_client():
 
 @client_route.route('/<int:client_id>' )
 def detalhe_client(client_id):
-        cliente= list(filter(lambda c: c['id'] == client_id))
+    cliente= list(filter(lambda c: c['id'] == client_id, CLIENTES))[0]
+    return render_template('detalhe_cliente.html', cliente= cliente)
 
 @client_route.route('/<int:client_id>/edit')
 def form_edit_client(client_id):
