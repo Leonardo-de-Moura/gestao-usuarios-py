@@ -1,14 +1,10 @@
 from flask import Flask
-from routes.home import home_route
-from routes.client import client_route
-#inicializaçao
+from configuration import configure_all
+
 app= Flask(__name__)
 
-#rotas
-app.register_blueprint(home_route)
-app.register_blueprint(client_route, url_prefix='/clientes')
+configure_all(app)
 
-#execuçao
 app.run(debug=True)
 
 
