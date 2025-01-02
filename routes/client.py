@@ -12,6 +12,12 @@ def lista_client():
 @client_route.route('/', methods=['POST'])
 def inserir_client():
     "inserir cliente no db"
+    data= request.json
+    print(data)
+    novo_usuario= Cliente.create(
+        name= data['Nome'],
+        email= data['Email']
+    )
     return render_template('item_cliente.html', cliente= novo_usuario)
 
 @client_route.route('/new')
@@ -20,15 +26,12 @@ def for_new_client():
 
 @client_route.route('/<int:client_id>' )
 def detalhe_client(client_id):
-    cliente= list(filter(lambda c: c['id'] == client_id, CLIENTES))[0]
+    cliente= Cliente.get_by_id(client_id)
     return render_template('detalhe_cliente.html', cliente= cliente)
 
 @client_route.route('/<int:client_id>/edit')
 def form_edit_client(client_id):
-    cliente= None
-    for c in CLIENTES:
-        if c["id"]==client_id:
-            cliente=c
+    cliente= Cliente.get_by_id(client_id)
     return render_template('form_client.html', cliente= cliente)
 
 @client_route.route('/<int:client_id>/update', methods=['PUT'])
