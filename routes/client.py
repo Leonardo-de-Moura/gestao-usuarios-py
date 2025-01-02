@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request
-from database.cliente import CLIENTES
 from database.models.cliente import Cliente
 
 client_route= Blueprint('client', __name__)
@@ -36,19 +35,16 @@ def form_edit_client(client_id):
 
 @client_route.route('/<int:client_id>/update', methods=['PUT'])
 def update_client(client_id):
-    clienteh= None
     data = request.json
-    for c in CLIENTES:
-        if c['id'] == client_id:
-            c['nome']=data['Nome']
-            c['email']=data['Email']
-            clienteh=c
-            
+    clienteh= Cliente.get_by_id(client_id)
+    clienteh.name= data['Nome']
+    clienteh.email= data['Email']        
+    clienteh.save()
     return render_template('item_cliente.html', cliente= clienteh)        
 
 @client_route.route('/<int:client_id>/delete', methods=['DELETE'])
 def delete_client(client_id):
-    global CLIENTES
-    CLIENTES = [ c for c in CLIENTES if c["id"] !=client_id  ]
-    return {"retorno":"true"}
+    cliente= Cliente.get_by_id(client_id)
+    cliente.delete_instance()
+
 
