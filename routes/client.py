@@ -12,7 +12,6 @@ def lista_client():
 def inserir_client():
     "inserir cliente no db"
     data= request.json
-    print(data)
     novo_usuario= Cliente.create(
         name= data['Nome'],
         email= data['Email']
@@ -23,7 +22,7 @@ def inserir_client():
 def for_new_client():
     return render_template('form_client.html')
 
-@client_route.route('/<int:client_id>' )
+@client_route.route('/<int:client_id>')
 def detalhe_client(client_id):
     cliente= Cliente.get_by_id(client_id)
     return render_template('detalhe_cliente.html', cliente= cliente)
