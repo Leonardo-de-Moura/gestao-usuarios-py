@@ -1,5 +1,5 @@
 from peewee import Model, CharField
-from database.database import db
+from database.data import db
 
 
 class Cliente(Model):

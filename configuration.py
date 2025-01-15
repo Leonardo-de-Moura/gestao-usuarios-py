@@ -1,6 +1,6 @@
 from routes.home import home_route
 from routes.client import client_route
-from database.database import db
+from database.data import db
 from database.models.cliente import Cliente
 
 def configure_all(app):
