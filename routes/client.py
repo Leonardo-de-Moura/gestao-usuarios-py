@@ -16,21 +16,21 @@ def inserir_client():
         name= data['Nome'],
         email= data['Email']
     )
-    return render_template('item_cliente.html', cliente= novo_usuario)
+    return novo_usuario
 
 @client_route.route('/new')
 def for_new_client():
-    return render_template('form_client.html')
+    return "/new"
 
 @client_route.route('/<int:client_id>')
 def detalhe_client(client_id):
     cliente= Cliente.get_by_id(client_id)
-    return render_template('detalhe_cliente.html', cliente= cliente)
+    return cliente
 
 @client_route.route('/<int:client_id>/edit')
 def form_edit_client(client_id):
     cliente= Cliente.get_by_id(client_id)
-    return render_template('form_client.html', cliente= cliente)
+    return jsonify(cliente)
 
 @client_route.route('/<int:client_id>/update', methods=['PUT'])
 def update_client(client_id):
@@ -39,7 +39,7 @@ def update_client(client_id):
     clienteh.name= data['Nome']
     clienteh.email= data['Email']        
     clienteh.save()
-    return render_template('item_cliente.html', cliente= clienteh)        
+    return jsonify(clienteh)       
 
 @client_route.route('/<int:client_id>/delete', methods=['DELETE'])
 def delete_client(client_id):
