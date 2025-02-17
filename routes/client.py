@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request,jsonify
 from database.models.cliente import Cliente
 
 client_route= Blueprint('client', __name__)
@@ -6,7 +6,7 @@ client_route= Blueprint('client', __name__)
 @client_route.route('/')
 def lista_client():
     clientes =Cliente.select()
-    return render_template('listaclientes.html', clientes=clientes)
+    return jsonify(clientes)
     
 @client_route.route('/', methods=['POST'])
 def inserir_client():
