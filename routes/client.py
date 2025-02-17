@@ -16,7 +16,7 @@ def inserir_client():
         name= data['Nome'],
         email= data['Email']
     )
-    return novo_usuario
+    return jsonify(novo_usuario)
 
 @client_route.route('/new')
 def for_new_client():
@@ -25,7 +25,7 @@ def for_new_client():
 @client_route.route('/<int:client_id>')
 def detalhe_client(client_id):
     cliente= Cliente.get_by_id(client_id)
-    return cliente
+    return jsonify(cliente)
 
 @client_route.route('/<int:client_id>/edit')
 def form_edit_client(client_id):
