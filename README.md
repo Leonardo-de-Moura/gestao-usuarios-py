@@ -1,6 +1,6 @@
 # Flask CRUD Application with Peewee ORM and SQLite
 
-This is a simple Flask application that implements a CRUD (Create, Read, Update, Delete) functionality using the Peewee ORM and SQLite as the database.
+This is a simple Flask application that implements a CRUD basic (Create, Read, Update, Delete) functionality using the Peewee ORM and SQLite as the database.
 
 ## Features
 - Simple and lightweight Flask web application.
